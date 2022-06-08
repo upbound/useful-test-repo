@@ -84,7 +84,7 @@ body:
       label: Managed Resource
       description: Do you have a working example of the desired Managed Resource(s)?
       placeholder: Managed Resource
-      value: "|
+      value: |
         apiVersion: example.jet.crossplane.io/v1alpha2
         kind: Example
         spec:
