@@ -1,0 +1,101 @@
+name: Composite/XRD Request
+description: Request a Composite (or XRD)
+title: "[XRD]: "
+labels: ["fly-in", "needs platform"]
+assignees:
+  - squad-platform
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Let's get you provisioning Infrastructure!
+  - type: input
+    id: squad-name
+    attributes:
+      label: Squad Name
+      description: What Squad needs this Composite?
+      placeholder: ex. squad-prodeng
+    validations:
+      required: true
+  - type: input
+    id: parent-issue
+    attributes:
+      label: Issue
+      description: Please share a link to the issue requiring this Composite.
+      placeholder: ex. https://github.com/upbound/distro/issues/3
+    validations:
+      required: true
+  - type: input
+    id: target-service
+    attributes:
+      label: Service Name
+      description: Will this Composite support a specific service?
+      placeholder: ex. upbound-auth
+    validations:
+      required: false
+  - type: dropdown
+    id: environments
+    attributes:
+      label: What environments does this XRD need to support?
+      multiple: true
+      options:
+        - corporate (platform-only)
+        - playground
+        - dev
+        - staging
+        - production
+    validations:
+      required: true
+  - type: textarea
+    id: engine-configuration
+    attributes:
+      label: Engine Configuration
+      description: Have you identified any custom configuration your service requires?
+      placeholder: Hard-coded Configuration
+      value: "ex. [database flags](https://cloud.google.com/sql/docs/mysql/flags#gcloud) for a SQL database. Please paste complete configuration values you _know_ you need."
+    validations:
+      required: false
+  - type: textarea
+    id: hardware-configuration
+    attributes:
+      label: Hardware Configuration
+      description: Have you identified any hardware limits this infrastructure must meet?
+      placeholder: Hardware Configuration
+      value: "ex. cpu, memory, and storage requirements for your resource(s). Do you require persistent storage?"
+    validations:
+      required: false
+  - type: textarea
+    id: composite-parameters
+    attributes:
+      label: Composite Parameters
+      description: Would you like to _request_ any specific parameters?
+      placeholder: Composite Parameters
+      value: "Please list any parameters you would like to manipulate at runtime. We will do our best to meet requests, but platform integrity may require hard-coding some values.
+      
+      - cloudAccountName
+      - cloudRegion
+      - environmentName"
+    validations:
+      required: false
+  - type: textarea
+    id: managed-resource
+    attributes:
+      label: Managed Resource
+      description: Do you have a working example of the desired Managed Resource(s)?
+      placeholder: Managed Resource
+      value: "apiVersion: example.jet.crossplane.io/v1alpha2
+kind: Example
+spec:
+  forProvider:
+    projectId: example-project
+    providerName: GCP
+    providerInstanceSizeName: M10
+    providerRegionName: CENTRAL_US
+  providerConfigRef:
+    name: example-provider
+  writeConnectionSecretToRef:
+    name: example-connection
+    namespace: example
+"
+    validations:
+      required: false
