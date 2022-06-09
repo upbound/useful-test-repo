@@ -1,3 +1,4 @@
+---
 name: Composite/XRD Request
 description: Request a Composite (or XRD)
 title: "[XRD]: "
@@ -8,7 +9,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Let's get you provisioning Infrastructure!
+        Before submitting this request, please check our [platform-composites](https://github.com/upbound/platform-composites.git) repo. Maybe there is already a composite that satisfies your requirements?
   - type: input
     id: squad-name
     attributes:
@@ -56,9 +57,9 @@ body:
     validations:
       required: false
   - type: textarea
-    id: hardware-configuration
+    id: hardware-requirements
     attributes:
-      label: Hardware Configuration
+      label: Hardware Requirements
       description: Have you identified any hardware limits this infrastructure must meet?
       placeholder: Hardware Configuration
       value: "ex. cpu, memory, and storage requirements for your resource(s). Do you require persistent storage?"
@@ -71,11 +72,15 @@ body:
       description: Would you like to _request_ any specific parameters?
       placeholder: Composite Parameters
       value: |
-        Please list any parameters you would like to manipulate at runtime. We will do our best to meet requests, but platform integrity may require hard-coding some values.
+        Please list any parameters you would like to manipulate at runtime.
+        We will do our best to meet requests, but platform integrity may require hard-coding some values.
 
-        - cloudAccountName
-        - cloudRegion
+        *Note: This refers to parameters for your infrastructure, not environment variables or secrets for your application. Some examples include:
+
         - environmentName
+        - cloudAccountName
+        - availabilityZone
+        - authorizedNetworks
     validations:
       required: false
   - type: textarea
