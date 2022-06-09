@@ -1,4 +1,3 @@
----
 name: Composite/XRD Request
 description: Request a Composite (or XRD)
 title: "[XRD]: "
@@ -53,7 +52,9 @@ body:
       label: Engine Configuration
       description: Have you identified any custom configuration your service requires?
       placeholder: Hard-coded Configuration
-      value: "ex. [database flags](https://cloud.google.com/sql/docs/mysql/flags#gcloud) for a SQL database. Please paste complete configuration values you _know_ you need."
+      value: |
+        ex. database flags for a SQL database, or encryption settings on a bucket.
+        These are values which are required _by your service_ in order to meet its needs.
     validations:
       required: false
   - type: textarea
